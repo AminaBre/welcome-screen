@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velkommen til Grunnleggende Programmering!</title>
+
+    <!-- Google Fonts - Fira Code -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #202025;
+        color: #61dafb;
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      .glowing-header {
+        font-family: "Source Code", monospace;
+        z-index: 1;
+        background: linear-gradient(90deg, #61dafb, #21a1f1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 5px rgba(97, 218, 251, 0.8);
+      }
+
+      h1 .glowing-header {
+        font-size: 3.5rem;
+        animation: glow 1s infinite alternate;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px rgba(97, 218, 251, 0.8),
+            0 0 20px rgba(97, 218, 251, 0.6), 0 0 30px rgba(97, 218, 251, 0.4);
+        }
+        to {
+          text-shadow: 0 0 20px rgba(97, 218, 251, 1),
+            0 0 30px rgba(97, 218, 251, 0.8), 0 0 40px rgba(97, 218, 251, 0.6);
+        }
+      }
+
+      .emoji {
+        position: absolute;
+        animation: rain linear infinite;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      @keyframes rain {
+        0% {
+          top: -10%;
+          opacity: 1;
+        }
+        100% {
+          top: 110%;
+          opacity: 0;
+        }
+      }
+
+      .background-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 19px,
+            rgba(255, 255, 255, 0.05) 20px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 19px,
+            rgba(255, 255, 255, 0.05) 20px
+          );
+        z-index: 0;
+      }
+
+      p {
+        font-size: 1.5rem;
+        color: #c5c6c7;
+        z-index: 1;
+        margin-top: 1rem;
+      }
+
+      .progress-container {
+        width: 80%;
+        background-color: #1f2833;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        height: 40px;
+        margin-top: 20px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #61dafb, #894b9c);
+        border-radius: 20px 0 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0b0c10;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: width 0.5s ease;
+      }
+
+      #progress-label {
+        margin-top: 20px;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-grid"></div>
+    <div class="flex-container">
+      <div>
+        <h2>
+          <span class="glowing-header">Gruppe 1</span>
+        </h2>
+        <h1>
+          <span class="glowing-header"
+            >Velkommen til Grunnleggende Programmering</span
+          >
+          🥳
+        </h1>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar">0</div>
+      </div>
+      <div id="progress-label">0 / 12</div>
+    </div>
+
+    <!-- Takk ChatGPT! -->
+    <script>
+      const emojis = ["💻", "🌸", "🎉", "✨", "🤩", "🖥️", "🎮"];
+      const numEmojis = 50;
+
+      for (let i = 0; i < numEmojis; i++) {
+        const emoji = document.createElement("div");
+        emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.className = "emoji";
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.animationDuration = Math.random() * 8 + 5 + "s";
+        emoji.style.animationDelay = Math.random() * 5 + "s";
+        emoji.style.fontSize = Math.random() * 2 + 1 + "rem";
+        document.body.appendChild(emoji);
+      }
+
+      console.log("Heisan! :-)");
+
+      let progress = 1;
+      const progressBar = document.getElementById("progress-bar");
+      const progressLabel = document.getElementById("progress-label");
+
+      progressBar.style.width = (progress * 100) / 12 + "%";
+      progressBar.innerText = progress;
+      progressLabel.innerText = `${progress} / 12`;
+    </script>
+  </body>
+</html>
